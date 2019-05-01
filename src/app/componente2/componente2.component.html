@@ -1,3 +1,19 @@
-<p>
-  componente2 works!
-</p>
+<div class="searchCard">
+    <input class="form-control" type="text" name="search" [(ngModel)]="searchCard" autocomplete="off" 
+    placeholder="Buscar por Name">
+  </div>
+
+<form [formGroup]="myForm">
+<div class="card-deck">
+  <div class="card" *ngFor="let item of policies | filter:searchCard">
+    <div class="card-body">
+        <input type="checkbox" (change)="onChange(item, $event.target.checked)"> 
+      <h5 class="card-title">Name: {{item.name}}</h5>
+      <p class="card-text">Alexis Ivan Camargo V.</p>
+    </div>
+  </div>
+</div> 
+</form>
+
+
+<pre>Form values: {{myForm.value | json}}</pre>
