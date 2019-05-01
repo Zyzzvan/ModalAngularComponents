@@ -1,5 +1,5 @@
 <div class="searchCard">
-    <input class="form-control" type="text" name="search" [(ngModel)]="searchCard" autocomplete="off" 
+    <input class="form-control"  type="text" name="search" [(ngModel)]="searchCard" autocomplete="off" 
     placeholder="Buscar por Name">
   </div>
 
@@ -7,7 +7,7 @@
 <div class="card-deck">
   <div class="card" *ngFor="let item of policies | filter:searchCard">
     <div class="card-body">
-        <input type="checkbox" (change)="onChange(item, $event.target.checked)"> 
+        <input type="checkbox" class="regular-checkbox"  (change)="onChange(item, $event.target.checked)"> 
       <h5 class="card-title">Name: {{item.name}}</h5>
       <p class="card-text">Alexis Ivan Camargo V.</p>
     </div>
