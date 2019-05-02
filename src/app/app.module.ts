@@ -14,6 +14,11 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatCheckboxModule} from '@angular/material';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import {MatSelectModule} from '@angular/material/select';
+import {MatStepperModule} from '@angular/material/stepper';
+import {MatInputModule} from '@angular/material';
+
+
 
 const routes: Routes = [
   { path: '', component: Componente0Component},
@@ -42,7 +47,10 @@ const routes: Routes = [
     ReactiveFormsModule,
     BrowserAnimationsModule,
     MatCheckboxModule,
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    MatSelectModule,
+    MatStepperModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent],

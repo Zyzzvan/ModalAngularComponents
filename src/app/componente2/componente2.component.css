@@ -3,14 +3,15 @@
 	background-color: #fafafa;
 	border: 1px solid #cacece;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
-	padding: 9px;
-	border-radius: 3px;
+	padding: 6px;
+	border-radius: 2px;
 	display: inline-block;
-	position: relative;
+    position: fixed;
+    align-self: flex-end;
 }
 
 .regular-checkbox:active, .regular-checkbox:checked:active {
-	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+	box-shadow: 0 1px 2px rgba(20,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
 }
 
 .regular-checkbox:checked {
@@ -18,4 +19,13 @@
 	border: 1px solid red;
 	box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05), inset 15px 10px -12px rgba(255,255,255,0.1);
 	color: red;
+}
+
+div.card-body:hover{
+    border-spacing: 2rem;
+    border-style: solid;
+    border-color: red;
+    padding: 10px;
+    transition-delay: .2s; /* delays for 1 second */
+
 }

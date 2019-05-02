@@ -6,8 +6,8 @@
 <form [formGroup]="myForm">
 <div class="card-deck">
   <div class="card" *ngFor="let item of policies | filter:searchCard">
+      <input type="checkbox" class="regular-checkbox"  (change)="onChange(item, $event.target.checked)"> 
     <div class="card-body">
-        <input type="checkbox" class="regular-checkbox"  (change)="onChange(item, $event.target.checked)"> 
       <h5 class="card-title">Name: {{item.name}}</h5>
       <p class="card-text">Alexis Ivan Camargo V.</p>
     </div>
