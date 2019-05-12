@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, TemplateRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { ModalCompComponent } from '../modal-comp/modal-comp.component';
+
 
 
 @Component({
@@ -9,11 +12,15 @@ import { FormGroup, FormBuilder, FormArray, FormControl } from '@angular/forms';
   styleUrls: ['./componente2.component.css']
 })
 export class Componente2Component implements OnInit {
+  modalRef: BsModalRef | null;
+  modalRef1: BsModalRef | null;
+
+
 
   policies = new Array<any>();
   myForm: FormGroup;
   searchCard;
-  constructor(private route: ActivatedRoute, private router: Router,private fb: FormBuilder) {
+  constructor(private route: ActivatedRoute, private router: Router,private fb: FormBuilder,private modalService: BsModalService) {
     this.isLoading();
    }
 
@@ -50,6 +57,41 @@ export class Componente2Component implements OnInit {
       let index = idFormArray.controls.findIndex(x => x.value == obj)
       idFormArray.removeAt(index);
     }
+  }
+
+
+  openModal(template: TemplateRef<any>) {
+    const initialState = {
+      list: ["Hola","Como","Estas"],
+      title: 'Titulo del modal cerrar',
+      refuseBtnName: 'Close',
+      template: template
+    };
+
+  
+
+    this.modalRef = this.modalService.show(ModalCompComponent, { initialState });
+
+    this.modalRef.content.refuseEvent.subscribe((value) => {
+        console.log(value) // here you will get the value
+        alert("El valor: " + value);
+        });
+  }
+
+  openModal1(template: TemplateRef<any>) {
+    const initialState = {
+      list: ["Hola","Como","Estas"],
+      title: 'Titulo del modal cerrar',
+      refuseBtnName: 'Close',
+      template: template
+    };
+
+    this.modalRef1 = this.modalService.show(ModalCompComponent, { initialState });
+
+    this.modalRef1.content.refuseEvent.subscribe((value) => {
+        console.log(value) // here you will get the value
+        alert("El: " + value);
+        });
   }
 
 }

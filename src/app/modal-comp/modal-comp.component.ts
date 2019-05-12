@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { BsModalRef } from 'ngx-bootstrap/modal';
+import { Component, OnInit, EventEmitter, Output,TemplateRef } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 export interface Food {
   value: string;
@@ -17,19 +17,28 @@ export class ModalCompComponent implements OnInit {
   @Output() okEvent = new EventEmitter();
   loading: boolean;
   foods = new Array<Food>();
+  template: TemplateRef<any>
+  modalRef: BsModalRef | null;
+  modalRef1: BsModalRef | null;
 
   title: string;
   closeBtnName: string;
   list: any[] = [];
 
-  isLinear = false;
+isLinear = false;
 firstFormGroup: FormGroup;
 secondFormGroup: FormGroup;
  
-  constructor(public bsModalRef: BsModalRef, private _formBuilder: FormBuilder) {}
+  constructor(public bsModalRef: BsModalRef, private _formBuilder: FormBuilder,private modalService: BsModalService) {
+    console.log("Hola Mundo");
+  }
  
   ngOnInit() {
-    //this.list.push('PROFIT!!!');
+    if(this.template.elementRef){
+      this.modalRef = this.modalService.show(this.template, { class: 'modal-dialog modal-lg modal-dialog-centered' });
+    }
+ 
+    this.list.push('PROFIT!!!');
     this.isloadingFood();
     this.isLoadingLinear();
   }
@@ -44,6 +53,8 @@ secondFormGroup: FormGroup;
     this.loading = true;
 		this.okEvent.emit(param); // here you can send object  instead of true
   }
+
+
 
   selectedValue: string;
 isloadingFood(){
@@ -63,6 +74,13 @@ isLoadingLinear(){
   this.secondFormGroup = this._formBuilder.group({
     secondCtrl: ['', Validators.required]
   });
+}
+
+
+dataName:string;
+first(){
+  alert("Hola");
+  this.dataName ="Alexis";
 }
 
 }

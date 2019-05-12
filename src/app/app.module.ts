@@ -17,6 +17,8 @@ import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {MatSelectModule} from '@angular/material/select';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatInputModule} from '@angular/material';
+import { ComponenteExpComponent } from './componente-exp/componente-exp.component';
+import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
 
 
 
@@ -26,7 +28,7 @@ const routes: Routes = [
   { path: 'componente2/', component:  Componente2Component},
   { path: 'componente1/:id', component:  Componente1Component},
   { path: 'componente2/:id/:titulo', component:  Componente2Component},
-  { path: '**', component:  Componente0Component}
+    { path: '**', component:  Componente0Component}
 ];
 
 @NgModule({
@@ -36,7 +38,8 @@ const routes: Routes = [
     Componente1Component,
     Componente2Component,
     ComponenteDetalleComponent,
-    ModalCompComponent
+    ModalCompComponent,
+    ComponenteExpComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +53,8 @@ const routes: Routes = [
     Ng2SearchPipeModule,
     MatSelectModule,
     MatStepperModule,
-    MatInputModule
+    MatInputModule,
+    PdfJsViewerModule
   ],
   providers: [],
   bootstrap: [AppComponent],

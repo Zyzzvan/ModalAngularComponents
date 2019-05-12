@@ -1,1 +1,80 @@
-<button type="button" class="btn btn-primary" (click)="openModalWithComponent()">Abrir Modal 2</button>
+<button type="button" class="btn btn-primary" (click)="openModal(template)">Create template modal</button>
+
+<ng-template #template>
+  <div class="modal-header">
+    <h4 class="modal-title pull-left">Modal</h4>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form id="regForm">
+      <h1>Carga de Documentos:</h1>
+      <!-- One "tab" for each step in the form: -->
+      <div class="tab">Selecciona
+        <div *ngIf="dataDoc.length">
+          <form class="needs-validation" ngNativeValidate (ngSubmit)="nextPrev(1)">
+            <div class="row">
+              <div class="col-md-6 form-check" *ngFor="let nomDoc of dataDoc">
+                <input type="radio" class="form-check-input" name="optradio" required
+                  (change)="onChange(nomDoc, $event.target.checked)" required>{{nomDoc.nomDocumento}}
+              </div>
+            </div>
+            <br>
+            <div style="overflow:auto;">
+              <div style="float:center;">
+                <button type="submit" id="nextBtn">Siguiente</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="tab">Selecciona
+        <form class="needs-validation" ngNativeValidate *ngIf="inputAtt.length" #myform="ngForm"
+          (ngSubmit)="loadData(myform)">
+          <div *ngFor="let elemAtt of inputAtt">
+            <div *ngIf="elemAtt.requerido == true; else elseBlock">
+              <label for="elemAtt-{{elemAtt.name}}">{{elemAtt.nombre}}</label>
+              <input type="text" class="form-control" id="elemAtt-{{elemAtt.name}}" name="{{elemAtt.name}}" required
+                placeholder="Escribe {{elemAtt.nombre}}" ngModel="{{elemAtt.valor}}"
+                [readonly]="elemAtt.readonly == true">
+            </div>
+              <ng-template #elseBlock>
+                  <label for="elemAtt-{{elemAtt.name}}">{{elemAtt.nombre}}</label>
+                  <input type="text" class="form-control" id="elemAtt-{{elemAtt.name}}" name="{{elemAtt.name}}"
+                    placeholder="Escribe {{elemAtt.nombre}}" ngModel="{{elemAtt.valor}}"
+                    [readonly]="elemAtt.readonly == true">
+              </ng-template>
+            </div>
+            <br>
+          <div style="overflow:auto;">
+            <div style="float:center;">
+              <button type="submit" id="nextBtn">Cargar</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <br>
+      <div style="overflow:auto;">
+        <div style="float:center;">
+          <button type="button" id="prevBtn" (click)="nextPrev(-1)">Anterior</button>
+        </div>
+      </div>
+
+      <!-- Circles which indicates the steps of the form: -->
+      <div style="text-align:center;margin-top:40px;">
+        <span class="step"></span>
+      </div>
+    </form>
+  </div>
+</ng-template>
+
+
+
+<div class="pdf-container" >
+
+
+    <ng2-pdfjs-viewer #inlinePdfViewer ></ng2-pdfjs-viewer>
+
+
+</div>
